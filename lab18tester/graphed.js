@@ -101,6 +101,9 @@ class Graph {
   add(n) {
     this.nodes.push(n)
   }
+  addEdge(n) {
+    this.edges.push(n)
+  }
   findNode(p) {
     for (let i = this.nodes.length - 1; i >= 0; i--) {
       const n = this.nodes[i]
@@ -112,6 +115,19 @@ class Graph {
     for (const n of this.nodes) {
       n.draw()
     }
+    for (const n of this.edges) {
+      n.draw()
+    }
+  }
+  connect(e, p1, p2) {
+    const n1 = this.findNode(p1)
+    const n2 = this.findNode(p2)
+    if (n1 !== undefined && n2 !== undefined) {
+      e.connect(n1, n2)
+      this.edges.push(e)
+      return true
+    }
+    return false
   }
 }
 
@@ -123,6 +139,9 @@ document.addEventListener('DOMContentLoaded', function () {
   graph.add(n1)
   graph.add(n2)
   graph.add(n3)
+  const e = createLineEdge()
+  graph.connect(e, { x: 20, y: 20 }, { x: 40, y: 40 })
+  graph.addEdge(e)
   graph.draw()
   
   const panel = document.getElementById('graphpanel')
