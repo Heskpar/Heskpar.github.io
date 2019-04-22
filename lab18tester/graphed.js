@@ -130,19 +130,23 @@ document.addEventListener('DOMContentLoaded', function () {
   let dragStartPoint = undefined
   let dragStartBounds = undefined
 
-  function repaint() {
+  function repaint(mousePoint) {
     const canvas = document.getElementById('graphpanel')
     const ctx = canvas.getContext('2d')
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     panel.innerHTML = ''
-    graph.draw()
     if (selected !== undefined) {
       const bounds = selected.getBounds()
       drawGrabber(bounds.x, bounds.y)
       drawGrabber(bounds.x + bounds.width, bounds.y)
       drawGrabber(bounds.x, bounds.y + bounds.height)
       drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
-    }    
+    }
+    if (selected === undefined) {
+      const n4 = new circleNode(mousePoint.x, mousePoint.y, 20, 'blue')
+      graph.add(n4)
+    }
+    graph.draw()
   }
   
   function mouseLocation(event) {
@@ -158,9 +162,9 @@ document.addEventListener('DOMContentLoaded', function () {
     selected = graph.findNode(mousePoint)
     if (selected !== undefined) {
       dragStartPoint = mousePoint
-      dragStartBounds = selected.getBounds()
+      dragStartBounds = selected.getBounds(mousePoint)
     }
-    repaint()
+    repaint(mousePoint)
   })
 
   panel.addEventListener('mousemove', event => {
