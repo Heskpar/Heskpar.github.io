@@ -5,7 +5,7 @@ function drawGrabber(x, y) {
   const canvas = document.getElementById('graphpanel')
   const ctx = canvas.getContext('2d')
   ctx.fillStyle = 'black'
-  ctx.fillRect(x - size / 2, x - size / 2, size, size)
+  ctx.fillRect(x - size / 2, y - size / 2, size, size)
 }
 
 function center(rect) {
@@ -33,6 +33,37 @@ function createLineEdge() {
   }
 }
 
+class circleNode {
+  constructor(x, y, size, color) {
+    this.x = x,
+    this.y = y,
+    this.size = size,
+    this.color = color
+  }
+  getBounds() {
+    return {
+      x: this.x,
+      y: this.y,
+      width: this.size,
+      height: this.size
+    }
+  }
+  contains(p) {
+    return (this.x + this.size / 2 - p.x) ** 2 + (this.y + this.size / 2 - p.y) ** 2 <= this.size ** 2 / 4
+  }
+  translate(dx, dy) {
+    this.x += dx
+    this.y += dy
+  }
+  draw() {
+    const canvas = document.getElementById('graphpanel')
+    const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
+    ctx.beginPath()
+    ctx.arc(this.x + this.size / 2, this.y + this.size / 2, this.size / 2, 0, Math.PI * 2, true)
+    ctx.fillStyle = this.color
+    ctx.fill()
+  }
+}
 
 function createCircleNode (x, y, size, color) {
   return {
@@ -88,8 +119,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const graph = new Graph()
   const n1 = createCircleNode(10, 10, 20, 'goldenrod')
   const n2 = createCircleNode(30, 30, 20, 'blue')
+  const n3 = new circleNode(50, 50, 20, 'goldenrod')
   graph.add(n1)
   graph.add(n2)
+  graph.add(n3)
   graph.draw()
   
   const panel = document.getElementById('graphpanel')
