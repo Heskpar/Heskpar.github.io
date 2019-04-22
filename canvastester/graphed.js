@@ -93,6 +93,15 @@ function createCircleNode (x, y, size, color) {
   }
 }
 
+
+
+
+class classNode {
+  draw() {
+    const canvas = document.getElementById('graphpanel')
+    const ctx = canvas.getContext('2d')
+    ctx.strokeRect
+
 class Graph {
   constructor() {
     this.nodes = []
