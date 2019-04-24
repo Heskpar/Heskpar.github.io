@@ -61,12 +61,12 @@ function createRectangleNode (x, y, size) {
       return {
         x: x,
         y: y,
-        width: size,
+        width: size * 2,
         height: size
       }
     },
     contains: p => {
-      return (x + size / 2 - p.x) ** 2 + (y + size / 2 - p.y) ** 2 <= size ** 2 / 4
+      return (x + size - p.x) ** 2 + (y + size / 2 - p.y) ** 2 <= size ** 2
     },
     translate: (dx, dy) => {
       x += dx
@@ -76,7 +76,9 @@ function createRectangleNode (x, y, size) {
       const canvas = document.getElementById('graphpanel')
       const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
       ctx.beginPath()
-      ctx.rect(x - size, y - size , size, size, Math.PI*2, true)
+      ctx.rect(x, y, size * 2, size, Math.PI*2, true)
+      ctx.fillStyle = 'white'
+      ctx.fillRect(x + 1, y + 1, (size * 2) - 1, size - 1, Math.PI*2, true)
       ctx.stroke()
     }
   }
@@ -144,16 +146,16 @@ class Graph {
 }
   document.addEventListener('DOMContentLoaded', function () {
     const graph = new Graph()
-    const n1 = createCircleNode(10, 10, 20, 'goldenrod')
-    const n2 = createCircleNode(30, 30, 20, 'blue')
-    const n3 = createRectangleNode(50, 30, 50, 10)
-    const n4 = createRectangleNode(30,20, 50, 10);
-    graph.add(n1)
-    graph.add(n2)
+    //const n1 = createCircleNode(10, 10, 20, 'goldenrod')
+    //const n2 = createCircleNode(30, 30, 20, 'blue')
+    const n3 = createRectangleNode(150, 30, 50, 10)
+    const n4 = createRectangleNode(20,20, 50, 10);
+    //graph.add(n1)
+    //graph.add(n2)
     graph.add(n3)
     graph.add(n4)
     const e = createLineEdge()
-    graph.connect(e, { x: 20, y: 20 }, { x: 40, y: 40 })
+    graph.connect(e, { x: 40, y: 40 }, { x: 160, y: 60 })
     graph.draw()
     
     const panel = document.getElementById('graphpanel')
@@ -161,24 +163,24 @@ class Graph {
     let dragStartPoint = undefined
     let dragStartBounds = undefined
   
-    // function repaint(mousePoint) {
-    //   const canvas = document.getElementById('graphpanel')
-    //   const ctx = canvas.getContext('2d')
-    //   ctx.clearRect(0, 0, canvas.width, canvas.height)
-    //   panel.innerHTML = ''
-    //   if (selected !== undefined) {
-    //     const bounds = selected.getBounds()
-    //     drawGrabber(bounds.x, bounds.y)
-    //     drawGrabber(bounds.x + bounds.width, bounds.y)
-    //     drawGrabber(bounds.x, bounds.y + bounds.height)
-    //     drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
-    //   }
-    //   if (selected === undefined) {
-    //     const n4 = new circleNode(mousePoint.x, mousePoint.y, 20, 'blue')
-    //     graph.add(n4)
-    //   }
-    //   graph.draw()
-    // }
+    function repaint(mousePoint) {
+      const canvas = document.getElementById('graphpanel')
+      const ctx = canvas.getContext('2d')
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      panel.innerHTML = ''
+      if (selected !== undefined) {
+        const bounds = selected.getBounds()
+        drawGrabber(bounds.x, bounds.y)
+        drawGrabber(bounds.x + bounds.width, bounds.y)
+        drawGrabber(bounds.x, bounds.y + bounds.height)
+        drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
+      }
+      if (selected === undefined) {
+        const n5 = new createRectangleNode(mousePoint.x, mousePoint.y, 50, 10)
+        graph.add(n5)
+      }
+      graph.draw()
+    }
 
     function repaint() {
       const ctx = panel.getContext('2d')
