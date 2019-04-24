@@ -97,10 +97,36 @@ function createCircleNode (x, y, size, color) {
 
 
 class classNode {
+  constructor(x, y, size, width, height) {
+    this.x = x,
+    this.y = y,
+    this.width = width,
+    this.height = height
+  }
+  getBounds() {
+    return {
+      x: this.x,
+      y: this.y,
+      width: this.width,
+      height: this.height
+    }
+  }
+  contains(p) {
+    return (this.x + this.width / 2 - p.x) ** 2 + (this.y + this.height / 2 - p.y) ** 2 <= this.width ** 2 / 4
+  }
+  translate(dx, dy) {
+    this.x += dx
+    this.y += dy
+  }
   draw() {
     const canvas = document.getElementById('graphpanel')
     const ctx = canvas.getContext('2d')
-    ctx.strokeRect
+    ctx.fillStyle = 'black'
+    ctx.fillRect(this.x, this.y, this.width, this.height)
+    ctx.fillRect(this.x, this.y + this.height, this.width, this.height / 2)
+    ctx.fillRect(this.x, this.y + this.height + (this.height / 2), this.width, this.height / 2)
+  }
+}
 
 class Graph {
   constructor() {
@@ -140,14 +166,27 @@ class Graph {
   }
 }
 
+/*function drawTest() {
+  var canvas = document.getElementById('graphpanel');
+  var ctx = canvas.getContext('2d');
+
+  ctx.fillRect(25, 25, 100, 100);
+  ctx.clearRect(45, 45, 60, 60);
+  ctx.strokeRect(50, 50, 50, 50);
+}*/
+
 document.addEventListener('DOMContentLoaded', function () {
   const graph = new Graph()
   const n1 = createCircleNode(10, 10, 20, 'goldenrod')
   const n2 = createCircleNode(30, 30, 20, 'blue')
   const n3 = new circleNode(50, 50, 20, 'goldenrod')
+  const n5 = new classNode(100, 100, 80, 60)
+  //const n6 = drawTest()
   graph.add(n1)
   graph.add(n2)
   graph.add(n3)
+  graph.add(n5)
+  //graph.add(n6)
   const e = createLineEdge()
   graph.connect(e, { x: 20, y: 20 }, { x: 40, y: 40 })
   graph.addEdge(e)
@@ -171,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
       drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
     }
     if (selected === undefined) {
-      const n4 = new circleNode(mousePoint.x, mousePoint.y, 20, 'blue')
+      const n4 = new classNode(mousePoint.x, mousePoint.y, 80, 60)
       graph.add(n4)
     }
     graph.draw()
