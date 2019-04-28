@@ -51,11 +51,13 @@ class Graph {
   }
 }
   document.addEventListener('DOMContentLoaded', function () {
-    const graph = new Graph()
+      const graph = new Graph()
+      const toolbar = new ToolBar()
     const n1 = createCircleNode(10, 10, 20, 'goldenrod')
     const n2 = createCircleNode(30, 30, 20, 'blue')
     const n3 = createRectangleNode(50, 30, 50, 10)
-    const n4 = createRectangleNode(30,20, 50, 10);
+      const n4 = createRectangleNode(30,20, 50, 10);
+      toolbar.addNode(createRectangleNode,graph)
     graph.add(n1)
     graph.add(n2)
     graph.add(n3)

@@ -17,11 +17,24 @@ function createRectangleNode (x, y, size) {
       x += dx
       y += dy
     },
-    draw: () => {
+      drawButton: (canvas) => {
+
+	  
+
+	  // const canvas = document.getElementById('toolbar')
+	 	    
+	  const ctx = canvas.getContext('2d')
+	  ctx.beginPath()
+	  ctx.rect(5 , 10 , 30, 15, Math.PI*2, true)
+	  ctx.stroke()
+
+	  
+      },
+      draw: () => {
       const canvas = document.getElementById('graphpanel')
       const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
       ctx.beginPath()
-      ctx.rect(x - size, y - size , size, size, Math.PI*2, true)
+      ctx.rect(x, y, size, size, Math.PI*2, true)
       ctx.stroke()
     }
   }

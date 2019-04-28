@@ -2,17 +2,33 @@
 
 class ToolBar {
     constructor() {
-	this.buttons = []
-	this.nodes = []
-	this.edges = []
+	this.i = 0
+	this.tools = []
     }
 
-    addNode(n) {
-	this.nodes.push(n)
-	
+    addNode(createNode,graph) {
+	var panel = document.getElementById('graphpanel')
+	function mouseLocation(event) {
+	    var rect = panel.getBoundingClientRect();
+	    return {
+		x: event.clientX - rect.left,
+		y: event.clientY - rect.top,
+	    }
     }
-    addEdge(e) {
-	this.edges.push(e)
+
+	function onClick () {
+	    
+	    panel.addEventListener('mousedown', event => {
+		let mousePoint = mouseLocation(event)
+		var node = createNode(mousePoint.x,mousePoint.y,20)
+		graph.add(node)
+		
+	    })
+	}
+
+	var button = createButton(createNode,this.i)
+	button.addEventListener('click',onClick())
+	this.i++
     }
-    
+  
 }

@@ -144,8 +144,12 @@ class Graph {
 
   }
 }
-  document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
+    
+    
     const graph = new Graph()
+    const toolbar = new ToolBar()
+    
     //const n1 = createCircleNode(10, 10, 20, 'goldenrod')
     //const n2 = createCircleNode(30, 30, 20, 'blue')
     var x1 = Math.floor((Math.random() * 800) + 1);
@@ -158,6 +162,7 @@ class Graph {
     //graph.add(n2)
     graph.add(n3)
     graph.add(n4)
+      
     const e = createLineEdge()
     graph.connect(e, { x: 40, y: 40 }, { x: 160, y: 60 })
     graph.draw()
