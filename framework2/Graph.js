@@ -58,14 +58,15 @@ class Graph {
     const n3 = createRectangleNode(50, 30, 50, 10)
     const n4 = createRectangleNode(200,100, 50, 10);
     const n5 = createNoteNode(50, 150, 45, 10)
-<<<<<<< HEAD
+
       toolbar.addNode(createRectangleNode,graph)
       toolbar.addNode(createNoteNode,graph)
-=======
+      toolbar.addNode(createFullNode,graph)
+
     const n6 = createFullNode(200, 200, 50, 10)
-    toolbar.addNode(createRectangleNode,graph)
+    
     //toolbar.addNode(createNoteNode,graph)
->>>>>>> 71135217c28c0cfd5ab01b4ff2e53b6dcd04446b
+
     //graph.add(n1)
     //graph.add(n2)
     graph.add(n3)

@@ -16,8 +16,8 @@ function createButton(createNode,k) {
     canvas.style.position = 'absolute'
     canvas.style.border = "1px solid"
    
-    canvas.style.left = String((k % 2)*70 + 25)+'px'
-    canvas.style.top = String(Math.floor(k/2)*60 + 25)+ 'px'
+    canvas.style.left = String((k % 2)*45 + 10)+'px'
+    canvas.style.top = String(Math.floor(k/2)*45 + 10)+ 'px'
 
 
     var div = document.getElementsByTagName('div')[0];
