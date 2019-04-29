@@ -59,6 +59,7 @@ class Graph {
     const n4 = createRectangleNode(200,100, 50, 10);
     const n5 = createNoteNode(50, 150, 45, 10)
     toolbar.addNode(createRectangleNode,graph)
+    //toolbar.addNode(createNoteNode,graph)
     //graph.add(n1)
     //graph.add(n2)
     graph.add(n3)
