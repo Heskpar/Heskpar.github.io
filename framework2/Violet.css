@@ -2,8 +2,8 @@
     
     border: solid black 2px;
     background-size: 20px 20px;
-    background-image: linear-gradient(to right, grey 0.75px, transparent 0.75px),
-    linear-gradient(to bottom, grey 0.75px, transparent 0.75px);
+    background-image: linear-gradient(to right, grey 1px, transparent 1px),
+    linear-gradient(to bottom, grey 1px, transparent 1px);
 }
 #toolbar {
     border: solid black 2px;

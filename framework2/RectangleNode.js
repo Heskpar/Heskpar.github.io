@@ -25,7 +25,7 @@ function createRectangleNode (x, y, size) {
 	 	    
 	  const ctx = canvas.getContext('2d')
 	  ctx.beginPath()
-	  ctx.rect(5 , 10 , 30, 15, Math.PI*2, true)
+	  ctx.rect(20 , 10 , 30, 15, Math.PI*2, true)
 	  ctx.stroke()
 
 	  

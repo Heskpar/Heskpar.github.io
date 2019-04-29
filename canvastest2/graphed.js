@@ -77,12 +77,38 @@ function createRectangleNode (x, y, size) {
       const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
       ctx.beginPath()
       ctx.rect(x, y, size * 2, size, Math.PI*2, true)
-      ctx.fillStyle = 'white'
+      ctx.fillStyle = "#FFFF66"
       ctx.fillRect(x + 1, y + 1, (size * 2) - 1, size - 1, Math.PI*2, true)
       ctx.stroke()
     }
   }
 }
+
+class RectangleNode {
+  constructor (x, y, size) {
+    this.x = x,
+    this.y = y,
+    this.width = size * 2,
+    this.height = size
+  }
+  contains (p) {
+    return (this.x + this.height - p.x) ** 2 + (this.y + this.height / 2 - p.y) ** 2 <= this.height ** 2
+  }
+  translate (dx, dy) {
+    this.x += dx,
+    this.y += dy
+  }
+  draw () {
+    const canvas = document.getElementById('graphpanel')
+    const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
+    ctx.beginPath()
+    ctx.rect(this.x, this.y, this.size * 2, this.size, Math.PI*2, true)
+    ctx.fillStyle = "#FFFF66"
+    ctx.fillRect(this.x + 1, this.y + 1, (this.size * 2) - 1, this.size - 1, Math.PI*2, true)
+    ctx.stroke()
+  }
+}
+
 
 function createLineEdge() {
   let start = undefined
@@ -137,6 +163,7 @@ class Graph {
   draw() {
     for (const n of this.nodes) {
       n.draw()
+     // RectangleNode.n.draw()
     }
     for (const e of this.edges) {
       e.draw()
@@ -150,10 +177,14 @@ class Graph {
     //const n2 = createCircleNode(30, 30, 20, 'blue')
     const n3 = createRectangleNode(150, 30, 50, 10)
     const n4 = createRectangleNode(20,20, 50, 10);
+    const n5 = new RectangleNode(150, 130, 50)
+    const n6 = new RectangleNode(20, 120, 50)
     //graph.add(n1)
     //graph.add(n2)
     graph.add(n3)
     graph.add(n4)
+    graph.add(n5)
+    graph.add(n6)
     const e = createLineEdge()
     graph.connect(e, { x: 40, y: 40 }, { x: 160, y: 60 })
     graph.draw()
