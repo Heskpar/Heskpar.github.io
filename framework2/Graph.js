@@ -58,6 +58,7 @@ class Graph {
     const n3 = createRectangleNode(50, 30, 50, 10)
     const n4 = createRectangleNode(200,100, 50, 10);
     const n5 = createNoteNode(50, 150, 45, 10)
+    const n6 = createFullNode(200, 200, 50, 10)
     toolbar.addNode(createRectangleNode,graph)
     //toolbar.addNode(createNoteNode,graph)
     //graph.add(n1)
@@ -65,6 +66,7 @@ class Graph {
     graph.add(n3)
     graph.add(n4)
     graph.add(n5)
+    graph.add(n6)
     const e = createLineEdge()
     graph.connect(e, { x: 60, y: 40 }, { x: 220, y: 120 })
     graph.draw()
