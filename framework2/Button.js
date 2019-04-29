@@ -9,14 +9,15 @@ function createButton(createNode,k) {
     //draw an image of the node or edge on the button in the canvas element.
     var canvas = document.createElement('canvas')
     var tempNode = createNode(20,20,20)
-    canvas.id = 'button'+k
+    canvas.id = 'button'+String(k)
     canvas.width =  40
     canvas.height = 40
     canvas.style.zIndex = 8;
-    canvas.style.position = "absolute"
+    canvas.style.position = 'absolute'
     canvas.style.border = "1px solid"
-    canvas.left = (k % 2)*70 + 25+'px'
-    canvas.top = Math.floor(k/2)*60 + 25+'px'
+   
+    canvas.style.left = String((k % 2)*70 + 25)+'px'
+    canvas.style.top = String(Math.floor(k/2)*60 + 25)+ 'px'
 
 
     var div = document.getElementsByTagName('div')[0];
