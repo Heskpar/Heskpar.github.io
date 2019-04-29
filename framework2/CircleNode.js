@@ -16,10 +16,6 @@ function createCircleNode (x, y, size, color) {
       x += dx
       y += dy
     },
-    //drawButton: (canvas) => {
-      //const ctx = canvas.getContext('2d')
-      //ctx.beginPath()
-      //ctx.arc(
     draw: () => {
       // const container = document.getElementById('nodeContainer')
       // const table = document.createElement('table')

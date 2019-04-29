@@ -20,9 +20,11 @@ class ToolBar {
 	    
 	    panel.addEventListener('mousedown', event => {
 		let mousePoint = mouseLocation(event)
-		var node = createNode(mousePoint.x,mousePoint.y,20)
+              let selected = graph.findNode(mousePoint)
+              if(selected === undefined) {
+		var node = createNode(mousePoint.x,mousePoint.y,50)
 		graph.add(node)
-		
+              }
 	    })
 	}
 

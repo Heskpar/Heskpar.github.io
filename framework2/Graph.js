@@ -53,18 +53,19 @@ class Graph {
   document.addEventListener('DOMContentLoaded', function () {
       const graph = new Graph()
       const toolbar = new ToolBar()
-    const n1 = createCircleNode(10, 10, 20, 'goldenrod')
-    const n2 = createCircleNode(30, 30, 20, 'blue')
+    //const n1 = createCircleNode(10, 10, 20, 'goldenrod')
+    //const n2 = createCircleNode(30, 30, 20, 'blue')
     const n3 = createRectangleNode(50, 30, 50, 10)
-      const n4 = createRectangleNode(30,20, 50, 10);
-      toolbar.addNode(createRectangleNode,graph)
-      toolbar.addNode(createCircleNode, graph)
-    graph.add(n1)
-    graph.add(n2)
+    const n4 = createRectangleNode(200,100, 50, 10);
+    const n5 = createNoteNode(50, 150, 45, 10)
+    toolbar.addNode(createRectangleNode,graph)
+    //graph.add(n1)
+    //graph.add(n2)
     graph.add(n3)
     graph.add(n4)
+    graph.add(n5)
     const e = createLineEdge()
-    graph.connect(e, { x: 20, y: 20 }, { x: 40, y: 40 })
+    graph.connect(e, { x: 60, y: 40 }, { x: 220, y: 120 })
     graph.draw()
     
     const panel = document.getElementById('graphpanel')
