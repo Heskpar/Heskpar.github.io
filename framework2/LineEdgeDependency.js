@@ -1,19 +1,19 @@
 'use strict'
 
-function createLineEdgeDependecy() {
-    return {
-        draw: () => {
-                 const canvas = document.getElementById('graphpanel');
-            const ctx = canvas.getContext('2d');
-            // Solid line
-            ctx.beginPath();
-            ctx.setLineDash([5,15]);
-            ctx.moveTo(0, 100);
-            ctx.lineTo(500, 300);
-            ctx.stroke();
-        }
-      }
-}
+// function createLineEdgeDependecy() {
+//     return {
+//         draw: () => {
+//                  const canvas = document.getElementById('graphpanel');
+//             const ctx = canvas.getContext('2d');
+//             // Solid line
+//             ctx.beginPath();
+//             ctx.setLineDash([5,15]);
+//             ctx.moveTo(0, 100);
+//             ctx.lineTo(500, 300);
+//             ctx.stroke();
+//         }
+//       }
+// }
 //   let start = undefined
 //   let end = undefined
 //   return {
