@@ -17,15 +17,14 @@ function createRectangleNode (x, y, size) {
       x += dx
       y += dy
     },
-      drawButton: (canvas) => {
-
-	  
+          
+    drawButton: (canvas) => {
 
 	  //const canvas = document.getElementById('toolbar')
 	 	    
 	  const ctx = canvas.getContext('2d')
 	  ctx.beginPath()
-	  ctx.rect(5 , 10 , 30, 15, Math.PI*2, true)
+	  ctx.rect(5 , 10 , 30, 15, Math.PI*2,true)
 	  ctx.stroke()
 
 	  
@@ -36,7 +35,7 @@ function createRectangleNode (x, y, size) {
         ctx.beginPath()
         ctx.rect(x, y, size * 2, size, Math.PI*2, true)
         ctx.fillStyle = "white"
-        ctx.fillRect(x + 1, y + 1, (size * 2) - 1, size - 1, Math.PI*2, true)
+        ctx.fillRect(x + 1, y + 1, (size * 2) - 1, size - 1, Math.PI*2,false)
         ctx.font = '24px serif'
         ctx.fillStyle = 'black'
         ctx.fillText("Test", x + size / 2, y + size / 1.5)
