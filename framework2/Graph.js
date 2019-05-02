@@ -51,17 +51,17 @@ class Graph {
   }
 }
   document.addEventListener('DOMContentLoaded', function () {
-      const graph = new Graph()
-      const toolbar = new ToolBar()
+    const graph = new Graph()
+    const toolbar = new ToolBar()
     //const n1 = createCircleNode(10, 10, 20, 'goldenrod')
     //const n2 = createCircleNode(30, 30, 20, 'blue')
     const n3 = createRectangleNode(50, 30, 50, 10)
     const n4 = createRectangleNode(200,100, 50, 10);
     const n5 = createNoteNode(50, 150, 45, 10)
 
-      toolbar.addNode(createRectangleNode,graph)
-      toolbar.addNode(createNoteNode,graph)
-      toolbar.addNode(createFullNode,graph)
+    toolbar.addNode(createRectangleNode,graph)
+    toolbar.addNode(createNoteNode,graph)
+    toolbar.addNode(createFullNode,graph)
 
     const n6 = createFullNode(200, 200, 50, 10)
     
@@ -77,6 +77,24 @@ class Graph {
     graph.connect(e, { x: 60, y: 40 }, { x: 220, y: 120 })
     graph.draw()
     
+
+    //Testing edge arrows
+    const n7 = createRectangleNode(50, 30, 50, 10)
+    const n8 = createRectangleNode(200,100, 50, 10)
+    graph.add(n7)
+    graph.add(n8)
+    const e2 = createLineEdgeDependecy()
+    graph.add(e2)
+    // graph.connect(e2, { x: 60, y: 40 }, { x: 220, y: 120 })
+    graph.draw()
+    const e3 = createLineEdgeInheritance()
+    graph.add(e3)
+    graph.draw()
+
+
+
+
+
     const panel = document.getElementById('graphpanel')
     let selected = undefined
     let dragStartPoint = undefined
