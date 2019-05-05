@@ -43,15 +43,15 @@ const ClassNodePrototype = {
         var centerY = this.y + this.height/2
         var dx = point.x - centerX
         var dy = point.y - centerY
-        if(dx<-dy && dx >= dy) return {x: centerX, y: this.y}
-        else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width, y: this.centerY}
+        if(dx<-dy && dx >= dy) return {x: centerX, y: this.y} //Top side of the node
+        else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width, y: centerY + (this.height/4)} //Right side of the node isn't working
         // else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width}
-        else if(dx < -dy && dx <dy) return {x:this.x,y: centerY}
-        else if(dx >= -dy && dx<dy)return{x: centerX, y:this.y+this.height}
+        else if(dx < -dy && dx <dy) return {x:this.x,y: centerY} //Left side of the node
+        else if(dx >= -dy && dx<dy)return{x: centerX, y:this.y+this.height} //bottom side of the node
         },
         center:function()  {
         return{
-            x: this.x+this.width/2 ,
+            x: this.x+this.height/2,
             y: this.y+this.height/2
         }
         }
