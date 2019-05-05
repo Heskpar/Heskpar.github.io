@@ -19,8 +19,6 @@ function createRectangleNode (x, y, size) {
     },
       drawButton: (canvas) => {
 
-	  
-
 	  //const canvas = document.getElementById('toolbar')
 	 	    
 	  const ctx = canvas.getContext('2d')
