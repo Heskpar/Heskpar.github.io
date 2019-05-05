@@ -41,30 +41,20 @@ class Graph {
 
     }
 }
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', function () {
     const graph = new Graph()
     const toolbar = new ToolBar(graph)
-=======
-  document.addEventListener('DOMContentLoaded', function () {
-    const graph = new Graph()
-    const toolbar = new ToolBar()
->>>>>>> 878726df7ece5180703fc2509d52b910b46e2376
     //const n1 = createCircleNode(10, 10, 20, 'goldenrod')
     //const n2 = createCircleNode(30, 30, 20, 'blue')
     const n3 = createRectangleNode(50, 30, 50, 10)
     const n4 = createRectangleNode(200,100, 50, 10);
     const n5 = createNoteNode(50, 150, 45, 10)
-
-<<<<<<< HEAD
     toolbar.addNode(createRectangleNode)
     toolbar.addNode(createNoteNode)
     toolbar.addNode(createFullNode)
-=======
     toolbar.addNode(createRectangleNode,graph)
     toolbar.addNode(createNoteNode,graph)
     toolbar.addNode(createFullNode,graph)
->>>>>>> 878726df7ece5180703fc2509d52b910b46e2376
 
     const n6 = createFullNode(200, 200, 50, 10)
     
