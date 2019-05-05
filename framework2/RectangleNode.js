@@ -17,6 +17,19 @@ function createRectangleNode (x, y, size) {
       x += dx
       y += dy
     },
+
+    getConnectionPoint: p => {
+      let centerX = x + size / 2
+      let centerY = y + size / 2
+      let dx = p.x - centerX
+      let dy = p.y - centerY
+      let distance = (dx * dx + dy * dy) ** 0.5
+      if(distance === 0 ) 
+        return p
+      else return {
+        x: centerX + dx * (size / 2) / distance, y: centerY + dy * (size / 2) / distance 
+      }
+    },
           
     drawButton: (canvas) => {
 

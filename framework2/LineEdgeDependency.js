@@ -1,18 +1,76 @@
 'use strict'
 
 function createLineEdgeDependecy() {
+    let styleOfLine = undefined
+    let startPoint = undefined
+    let endPoint = undefined 
+    let start = undefined
+    let end = undefined
     return {
-        draw: () => {
-            const canvas = document.getElementById('graphpanel');
-            const ctx = canvas.getContext('2d');
-            // Solid line
-            ctx.beginPath();
-            ctx.setLineDash([5,15]);
-            ctx.moveTo(0, 100);
-            ctx.lineTo(500, 300);
-            ctx.stroke();
+      connect: (s, e) => {
+        start = s
+        end = e
+      },
+  
+      getType:() => {
+        return 'EDGE'
+      },
+  
+      setStyleOfLine:(l) => {
+        styleOfLine = l
+      },
+      draw: () => {
+        const canvas = document.getElementById('graphpanel')
+        const ctx = canvas.getContext('2d')
+        ctx.beginPath()
+        const startBounds = start.getBounds() 
+        const endBounds = end.getBounds() 
+        // const p = center(startBounds) // Just pick the center of the bounds for now
+        // const q = center(endBounds) // Not the "connection points" that graphed2 uses
+        startPoint = s.getConnectionPoint(startBounds)
+        endPoint = e.getConnectionPont(endBounds)
+        startPoint = s.getConnectionPoint(endPoint)
+        endPoint = e.getConnectionPoint(startPoint)
+        ctx.moveTo(p.x, p.y)
+        ctx.lineTo(q.x, q.y)
+        if(styleOfLine === 1)
+        {
+            ctx.setLineDash([5,15])
         }
-      }
+        ctx.stroke()
+      },
+      drawTool: () =>{
+        const canvas = document.getElementById('graphpanel')
+        const ctx = canvas.getContext('2d')
+        ctx.beginPath()
+        startPoint = s.getBounds()
+        endPoint = e.getBounds()
+        ctx.moveTo(p.x, p.y)
+        ctx.lineTo(q.x, q.y)
+        if(styleOfLine === 1)
+        {
+            ctx.setLineDash([5,15])
+        }
+        ctx.stroke()
+        },
+    drawDragged: (s,e) =>{
+        const canvas = document.getElementById('graphpanel')
+        const ctx = canvas.getContext('2d')
+        ctx.beginPath()
+        startPoint = s.getBounds()
+        ctx.moveTo(p.x, p.y)
+        ctx.lineTo(q.x, q.y)
+        if(styleOfLine === 1)
+        {
+            ctx.setLineDash([5,15])
+        }
+        ctx.stroke()
+        },
+        clone: () =>
+        {
+            return createLineEdgeDependecy()
+        }
+    }
 }
 //   let start = undefined
 //   let end = undefined
