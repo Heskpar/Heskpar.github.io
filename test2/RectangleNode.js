@@ -1,6 +1,6 @@
 'use strict'
 
-function createNoteNode (x, y, size) {
+function createRectangleNode (x, y, size) {
   return {
     getBounds: () => {
       return {
@@ -26,9 +26,7 @@ function createNoteNode (x, y, size) {
 	  const ctx = canvas.getContext('2d')
 	  ctx.beginPath()
 	  ctx.rect(5 , 10 , 30, 15, Math.PI*2, true)
-	  ctx.fillStyle = '#FFFF66'
-	  ctx.fillRect(6, 11, 29, 14, Math.PI*2, true)
-          ctx.stroke()
+	  ctx.stroke()
 
 	  
       },
@@ -36,12 +34,12 @@ function createNoteNode (x, y, size) {
         const canvas = document.getElementById('graphpanel')
         const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
         ctx.beginPath()
-        ctx.fillStyle = '#FFFF66'
         ctx.rect(x, y, size * 2, size, Math.PI*2, true)
+        ctx.fillStyle = "white"
         ctx.fillRect(x + 1, y + 1, (size * 2) - 1, size - 1, Math.PI*2, true)
-        ctx.font = '20px serif'
+        ctx.font = '24px serif'
         ctx.fillStyle = 'black'
-        ctx.fillText("Note", x + size / 2, y + size / 1.5)
+        ctx.fillText("Test", x + size / 2, y + size / 1.5)
         ctx.stroke()
       }
     }
