@@ -3,8 +3,9 @@ const ClassNodePrototype = {
      getBounds: function(){
 	return{x: this.x,y:this.y,width:this.width,height:this.height}
     },
-    contains: function(p){
-	return (this.x + this.size - p.x) ** 2 + (this.y + this.size / 2 - p.y) ** 2 <= this.size ** 2
+   contains: function(p){
+	return (this.x <= p.x && p.x <= this.x+this.width) &&
+	    (this.y <= p.y && p.y <= this.y + this.height)
     },
     translate: function(dx, dy){
 	this.x += dx
@@ -23,7 +24,7 @@ const ClassNodePrototype = {
         const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
         ctx.beginPath()
         ctx.rect(this.x, this.y, this.size*2, this.size, Math.PI*2, true)
-        ctx.rect(this.x, this.y + this.size, this.this.size * 2, this.size / 2, Math.PI*2, true)
+        ctx.rect(this.x, this.y + this.size, this.size * 2, this.size / 2, Math.PI*2, true)
         ctx.rect(this.x, this.y + (this.size * 1.5), this.size * 2, this.size / 2, Math.PI*2, true)
         ctx.fillStyle = "white"
         ctx.fillRect(this.x + 1, this.y + 1, (this.size * 2) - 1, this.size - 1, Math.PI*2, true)
@@ -31,7 +32,7 @@ const ClassNodePrototype = {
         ctx.fillRect(this.x + 1, (this.y + this.size * 1.5) + 1, (this.size * 2) - 1, (this.size / 2) - 1, Math.PI*2, true)
         ctx.font = '24px serif'
         ctx.fillStyle = 'black'
-        ctx.fillText("Class", this.x + this.size / 2, this.y + this.size / 1.5)
+        ctx.fillText("Class", this.x + this.size / 3, this.y + this.size / 1.5)
         ctx.font = '12px serif'
         ctx.fillText("attribute", this.x + this.size / 2, this.y + (this.size * 1.3))
         ctx.fillText("method", this.x + this.size / 2, this.y + (this.size * 1.8))
@@ -44,6 +45,8 @@ function createClassNode (x, y, size) {
     const result = Object.create(ClassNodePrototype)
     result.x = x
     result.y = y
+    result.size = size
     result.width = size*2
-    result.height = size*3
+    result.height = size*2
+    return result
   }

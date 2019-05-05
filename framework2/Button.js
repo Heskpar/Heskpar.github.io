@@ -32,7 +32,7 @@ class Button {
 
     Switch(event)
     {
-	self = event.target
+	
 
 	var old_element = document.getElementById('graphpanel')
 	var new_element = old_element.cloneNode(true)

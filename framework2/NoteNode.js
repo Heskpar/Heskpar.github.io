@@ -1,48 +1,48 @@
-'use strict'
+const  NoteNodePrototype ={
 
-function createNoteNode (x, y, size) {
-  return {
-    getBounds: () => {
-      return {
-        x: x,
-        y: y,
-        width: size * 2,
-        height: size
-      }
+    getBounds: function(){
+	return{x: this.x,y:this.y,width:this.width,height:this.height}
     },
-    contains: p => {
-      return (x + size - p.x) ** 2 + (y + size / 2 - p.y) ** 2 <= size ** 2
+    contains: function(p){
+	return (this.x <= p.x && p.x <= this.x+this.width) &&
+	    (this.y <= p.y && p.y <= this.y + this.height)
     },
-    translate: (dx, dy) => {
-      x += dx
-      y += dy
+    translate: function(dx, dy){
+	this.x += dx
+	this.y += dy
     },
-      drawButton: (canvas) => {
+    drawButton: function(canvas){
+	const ctx = canvas.getContext('2d')
+	ctx.beginPath()
+	ctx.rect(5 , 10 , 30, 15, Math.PI*2, true)
+	ctx.fillStyle = '#FFFF66'
+	ctx.fillRect(6, 11, 29, 14, Math.PI*2, true)
+	ctx.stroke()
 
-	  
-
-	  //const canvas = document.getElementById('toolbar')
-	 	    
-	  const ctx = canvas.getContext('2d')
-	  ctx.beginPath()
-	  ctx.rect(5 , 10 , 30, 15, Math.PI*2, true)
-	  ctx.fillStyle = '#FFFF66'
-	  ctx.fillRect(6, 11, 29, 14, Math.PI*2, true)
-          ctx.stroke()
-
-	  
-      },
-      draw: () => {
-        const canvas = document.getElementById('graphpanel')
-        const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
-        ctx.beginPath()
-        ctx.fillStyle = '#FFFF66'
-        ctx.rect(x, y, size * 2, size, Math.PI*2, true)
-        ctx.fillRect(x + 1, y + 1, (size * 2) - 1, size - 1, Math.PI*2, true)
-        ctx.font = '20px serif'
-        ctx.fillStyle = 'black'
-        ctx.fillText("Note", x + size / 2, y + size / 1.5)
-        ctx.stroke()
-      }
+	
+    },
+    draw: function(){
+	const canvas = document.getElementById('graphpanel')
+	const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
+	ctx.beginPath()
+	ctx.fillStyle = '#FFFF66'
+	ctx.rect(this.x, this.y, this.size * 2, this.size, Math.PI*2, true)
+	ctx.fillRect(this.x + 1, this.y + 1, (this.size * 2) - 1, this.size - 1, Math.PI*2, true)
+	ctx.font = '20px serif'
+	ctx.fillStyle = 'black'
+	ctx.fillText("Note", this.x + this.size / 2, this.y + this.size / 1.5)
+	ctx.stroke()
     }
-  }
+}
+function createNoteNode(x, y, size) {
+    const result = Object.create(NoteNodePrototype)
+    result.x = x
+    result.y= y
+    result.size = size
+    result.width = size*2
+    result.height = size
+    return result
+ 
+
+}
+

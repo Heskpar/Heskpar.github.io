@@ -1,25 +1,29 @@
 function updateGraphListener(button,buttons,graph)
 {
-    var panel = document.getElementById('graphpanel')
-    if(button.type === 'grabber')
-    {
-	function repaint() {
-	    const ctx = panel.getContext('2d')
-	    ctx.clearRect(0, 0, panel.width, panel.height)
-	    panel.innerHTML = ''
-	    graph.draw()
-	    if (selected !== undefined) {
-		const bounds = selected.getBounds()
-		drawGrabber(bounds.x, bounds.y)
-		drawGrabber(bounds.x + bounds.width, bounds.y)
-		drawGrabber(bounds.x, bounds.y + bounds.height)      
-		drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
-	    }    
-	}
+    let dragStartPoint = undefined
+    let dragStartBounds = undefined
+    
+  
 
-	
-	
-	
+    var panel = document.getElementById('graphpanel')
+
+    function repaint(selected) {
+	const ctx = panel.getContext('2d')
+	ctx.clearRect(0, 0, panel.width, panel.height)
+	panel.innerHTML = ''
+	graph.draw()
+	if (selected !== undefined) {
+	    selected.draw()
+	    const bounds = selected.getBounds()
+	    drawGrabber(bounds.x, bounds.y)
+	    drawGrabber(bounds.x + bounds.width, bounds.y)
+	    drawGrabber(bounds.x, bounds.y + bounds.height)      
+	    drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
+	}    
+    }
+
+    if(button.type === 'grabber')
+    {	
 	panel.addEventListener('mousedown', event => {
 	    let mousePoint = mouseLocation(event)
 	    selected = graph.findNode(mousePoint)
@@ -27,7 +31,7 @@ function updateGraphListener(button,buttons,graph)
 		dragStartPoint = mousePoint
 		dragStartBounds = selected.getBounds(mousePoint)
 	    }
-	    repaint(mousePoint)
+	    repaint(selected)
 	})
 	
         panel.addEventListener('mousemove', event => {
@@ -41,7 +45,8 @@ function updateGraphListener(button,buttons,graph)
 			+ mousePoint.x - dragStartPoint.x,
 		    dragStartBounds.y - bounds.y 
 			+ mousePoint.y - dragStartPoint.y);
-		repaint()
+		repaint(selected)
+		
 	    }
 	})
 	
@@ -61,13 +66,14 @@ function updateGraphListener(button,buttons,graph)
 		
 		graph.add(node)
 		
-		
+		graph.draw()
+		repaint(selected)
 		const bounds = node.getBounds()
 		drawGrabber(bounds.x, bounds.y)
 		drawGrabber(bounds.x + bounds.width, bounds.y)
 		drawGrabber(bounds.x, bounds.y + bounds.height)      
 		drawGrabber(bounds.x + bounds.width, bounds.y + bounds.height)
-		graph.draw()
+		
 		
             }
 	})

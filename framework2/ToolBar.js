@@ -5,6 +5,10 @@ class ToolBar {
 	this.i = 1
 	this.tools = []
 	this.graph = graph
+	
+	
+	this.tools.push(new Button(createGrabber,0,'grabber',this.graph,this.tools))
+	this.tools[0].canvas.addEventListener('click', event =>this.tools[0].Switch(event))
     }
 
     addNode(createNode) {
