@@ -25,7 +25,9 @@ function createFullNode (x, y, size) {
 	 	    
 	  const ctx = canvas.getContext('2d')
 	  ctx.beginPath()
-	  ctx.rect(5 , 10 , 30, 15, Math.PI*2, true)
+	  ctx.rect(5 , 6, 30, 15, Math.PI*2, true)
+          ctx.rect(5, 21, 30, 7, Math.PI*2, true)
+          ctx.rect(5, 28, 30, 7, Math.PI*2, true)
 	  ctx.stroke()
 
 	  
