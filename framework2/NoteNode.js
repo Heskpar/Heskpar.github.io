@@ -32,11 +32,28 @@ const  NoteNodePrototype ={
 	ctx.fillStyle = 'black'
 	ctx.fillText(this.title, this.x + this.size / 2, this.y + this.size / 1.5)
 	ctx.stroke()
+    },
+    propSheet: function(){
+      document.getElementById("text1").style.visibility = "visible";
+      document.getElementById("label1").style.visibility = "visible";
+
+      document.getElementById("text2").style.visibility = "hidden";
+      document.getElementById("label2").style.visibility = "hidden";
+
+      document.getElementById("text3").style.visibility = "hidden";
+      document.getElementById("label3").style.visibility = "hidden";
+
+
+      if (document.getElementById("text1").value !== ""){
+        this.title = document.getElementById("text1").value;
+        document.getElementById("text1").value = "";
+      }
+
     }
 }
 function createNoteNode(x, y, size) {
     const result = Object.create(NoteNodePrototype)
-    result.title = "aaaa"
+    result.title = "Note"
     result.color = '#FFFF66'
     result.x = x
     result.y= y
