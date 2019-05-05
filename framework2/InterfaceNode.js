@@ -51,6 +51,8 @@ const InterfaceNodePrototype = {
       document.getElementById("text2").style.visibility = "visible";
       document.getElementById("label2").style.visibility = "visible";
       document.getElementById("label5").style.visibility = "hidden";
+      document.getElementById("label4").style.visibility = "hidden";
+      document.getElementById("colorpicker").style.visibility = "hidden";
 
       document.getElementById("text3").style.visibility = "hidden";
       document.getElementById("label3").style.visibility = "hidden";
