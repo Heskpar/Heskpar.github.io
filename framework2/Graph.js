@@ -78,18 +78,18 @@ class Graph {
     graph.draw()
     
 
-    // //Testing edge arrows
-    // const n7 = createRectangleNode(50, 30, 50, 10)
-    // const n8 = createRectangleNode(200,100, 50, 10)
-    // graph.add(n7)
-    // graph.add(n8)
-    // const e2 = createLineEdgeDependecy()
-    // graph.add(e2)
-    // // graph.connect(e2, { x: 60, y: 40 }, { x: 220, y: 120 })
-    // graph.draw()
-    // const e3 = createLineEdgeInheritance()
-    // graph.add(e3)
-    // graph.draw()
+    //Testing edge arrows
+    const n7 = createRectangleNode(50, 30, 50, 10)
+    const n8 = createRectangleNode(200,100, 50, 10)
+    graph.add(n7)
+    graph.add(n8)
+    const e2 = createLineEdgeDependecy()
+    graph.add(e2)
+    // graph.connect(e2, { x: 60, y: 40 }, { x: 220, y: 120 })
+    graph.draw()
+    const e3 = LineEdgeInheritance()
+    graph.add(e3)
+    graph.draw()
 
 
 
