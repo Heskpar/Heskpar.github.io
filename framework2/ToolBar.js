@@ -1,36 +1,20 @@
 'use strict'
 
 class ToolBar {
-    constructor() {
-	this.i = 0
+    constructor(graph) {
+	this.i = 1
 	this.tools = []
+	this.graph = graph
     }
 
-    addNode(createNode,graph) {
-	var panel = document.getElementById('graphpanel')
-	function mouseLocation(event) {
-	    var rect = panel.getBoundingClientRect();
-	    return {
-		x: event.clientX - rect.left,
-		y: event.clientY - rect.top,
-	    }
-    }
+    addNode(createNode) {
+	
 
-	function onClick () {
-	    
-	    panel.addEventListener('mousedown', event => {
-		let mousePoint = mouseLocation(event)
-              //let selected = graph.findNode(mousePoint)
-              //if(selected === undefined) {
-		var node = createNode(mousePoint.x,mousePoint.y,50)
-		graph.add(node)
-		graph.draw()
-              //}
-	    })
-	}
 
-	var button = createButton(createNode,this.i)
-	button.addEventListener('click',onClick)
+
+	const button = new Button(createNode,this.i,'node',this.graph,this.tools)
+	this.tools.push(button)
+	button.canvas.addEventListener('click', event =>button.Switch(event))
 	this.i++
     }
   
