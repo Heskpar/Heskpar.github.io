@@ -1,31 +1,81 @@
 
 'use strict'
 
-function createButton(createNode,k) {
-    //this class requires every edge and node to have a function
-    //that can draw a miniture version of itself in an area of 30 by 30
-    //pixels in a function called drawButtonImage(Button), which takes a canvas element.
-    //The function will be used to
-    //draw an image of the node or edge on the button in the canvas element.
-    var canvas = document.createElement('canvas')
-    var tempNode = createNode(20,20,20)
-    canvas.id = 'button'+String(k)
-    canvas.width =  40
-    canvas.height = 40
-    canvas.style.zIndex = 8;
-    canvas.style.position = 'absolute'
-    canvas.style.border = "1px solid"
-   
-    canvas.style.left = String((k % 2)*45 + 10)+'px'
-    canvas.style.top = String(Math.floor(k/2)*45 + 10)+ 'px'
+class Button {
+    constructor(createNode,k,type,graph,buttons)
+    {
+	this.graph = graph
+	this.buttons = buttons
+
+	this.createNode = createNode
+	this.type = type
+	this.canvas = document.createElement('canvas')
+	this.tempNode = createNode(20,20,20)
+	this.ctx = this.canvas.getContext('2d')
+	this.on = false
+	this.canvas.id = 'button'+String(k)
+	this.canvas.width =  40
+	this.canvas.height = 40
+	this.canvas.style.zIndex = 8;
+	this.canvas.style.position = 'absolute'
+	this.canvas.style.border = "1px solid"
+	
+	this.canvas.style.left = String((k % 3)*45 + 10)+'px'
+	this.canvas.style.top = String(Math.floor(k/3)*45 + 10)+ 'px'
 
 
-    var div = document.getElementsByTagName('div')[0];
-    div.appendChild(canvas);
-    tempNode.drawButton(canvas)
+	var div = document.getElementsByTagName('div')[0];
+	div.appendChild(this.canvas);
+	this.tempNode.drawButton(this.canvas)
 
-    return canvas
+    }
+
+    Switch(event)
+    {
+	self = event.target
+
+	var old_element = document.getElementById('graphpanel')
+	var new_element = old_element.cloneNode(true)
+	var ctx = this.canvas.getContext('2d')
+	old_element.parentNode.replaceChild(new_element,old_element)
+	if(this.on)
+	{
+	    this.on = false
+	    ctx.beginPath()
+	    ctx.rect(0,0,40,40)
+	    ctx.fillStyle = 'white'
+	    ctx.fill()
+	    this.tempNode.drawButton(this.canvas)
+	}
+	else
+	{
+	    for (const button of this.buttons)
+	    {
+		button.on = false
+		ctx = button.canvas.getContext('2d')
+		ctx.beginPath()
+		ctx.rect(0,0,40,40)
+		ctx.fillStyle = 'white'
+		ctx.fill()
+		button.tempNode.drawButton(button.canvas)
+	    }
+	    ctx = this.canvas.getContext('2d')
+	    this.on = true
+	    ctx.beginPath()
+	    ctx.rect(0,0,40,40)
+	    ctx.fillStyle = 'silver'
+	    ctx.fill()
+	    this.tempNode.drawButton(this.canvas)
+
+	    updateGraphListener(this,this.buttons,this.graph)
+	    
+	}
+	this.graph.draw()
+
+	
+    }
 }
+
 
 
 
