@@ -1,6 +1,6 @@
 'use strict'
 
-function LineEdgeInheritance()
+function createLineEdgeInheritance()
 {
     return {
         draw: () => {
