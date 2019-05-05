@@ -1,12 +1,13 @@
+'use strict'
 const  PackagePrototype ={
 
     getBounds: function(){
 	return{x: this.x,y:this.y,width: this.bottomWidth,
-	       height:this.topHeight + this.bottomHeight}
+	       height:this.bottomHeight + this.topHeight}
     },
     contains: function(p){
 	return (this.x <= p.x && p.x <= this.x+this.bottomWidth) &&
-	    (this.y <= p.y && p.y <= this.y + this.bottomHeight+this.topHeight)
+	    (this.y <= p.y && p.y <= this.y + this.bottomHeight+ this.topHeight)
     },
     translate: function(dx, dy){
 	this.x += dx
@@ -38,20 +39,20 @@ const  PackagePrototype ={
 	ctx.stroke()
 	},
 	getConnectionPoint: function(point){
-        var centerX = this.x + this.width/2
-        var centerY = this.y + this.height/2
+        var centerX = this.x + this.bottomWidth/2
+        var centerY = this.y + this.bottomHeight/2
         var dx = point.x - centerX
         var dy = point.y - centerY
-        if(dx<-dy && dx >= dy) return {x: centerX, y: this.y}
-        else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width, y: centerY}
+        if(dx<-dy && dx >= dy) return {x: centerX, y: this.y + 15}
+        else if(dx >= -dy && dx >= dy) return  {x: this.x + this.bottomWidth, y: centerY}
         // else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width}
         else if(dx < -dy && dx <dy) return {x:this.x,y: centerY}
-        else if(dx >= -dy && dx<dy)return{x: centerX, y:this.y+this.height}
+        else if(dx >= -dy && dx<dy)return{x: centerX, y:this.y + this.bottomHeight +15}
         },
         center:function()  {
         return{
-            x: this.x+this.width/2 ,
-            y: this.y+this.height/2
+            x: this.x +this.bottomWidth,
+			y: this.y +this.bottomHeight
         }
         }
 }
