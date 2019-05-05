@@ -23,17 +23,23 @@ const InterfaceNodePrototype = {
         const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
         ctx.beginPath()
         ctx.rect(this.x, this.y, this.width, this.size, Math.PI*2, true)
-        ctx.rect(this.x, this.y + this.size, this.width, this.size, Math.PI*2, true)
-        
+        if(this.methods !== ""){
+          ctx.rect(this.x, this.y + this.size, this.width, this.size, Math.PI*2, true)
+          this.height = this.size * 2
+        }
+
         ctx.fillStyle = "white"
         ctx.fillRect(this.x + 1, this.y + 1, (this.width) - 1, this.size - 1, Math.PI*2, true)
-        ctx.fillRect(this.x + 1, (this.y + this.size) + 1, (this.width) - 1, (this.size) - 1, Math.PI*2, true)
+        if(this.methods !== ""){
+          ctx.fillRect(this.x + 1, (this.y + this.size) + 1, (this.width) - 1, (this.size) - 1, Math.PI*2, true)
+        }
         ctx.font = '14px serif'
         ctx.fillStyle = 'black'
         ctx.fillText(this.name, this.x + this.size / 6, this.y + this.size / 1.7)
-        ctx.font = '12px serif'
-        ctx.fillText(this.methods, this.x + this.size / 2, this.y + (this.size * 1.3))
-        
+        if(this.methods !== ""){
+          ctx.font = '12px serif'
+          ctx.fillText(this.methods, this.x + this.size / 2, this.y + (this.size * 1.3))
+        }
         ctx.stroke()
 
     },
@@ -44,6 +50,7 @@ const InterfaceNodePrototype = {
 
       document.getElementById("text2").style.visibility = "visible";
       document.getElementById("label2").style.visibility = "visible";
+      document.getElementById("label5").style.visibility = "hidden";
 
       document.getElementById("text3").style.visibility = "hidden";
       document.getElementById("label3").style.visibility = "hidden";
@@ -63,11 +70,11 @@ function createInterfaceNode (x, y, size) {
 
     const result = Object.create(InterfaceNodePrototype)
     result.name = '<<Interface>>'
-    result.methods = 'attributes' 
+    result.methods = "" 
     result.x = x
     result.y = y
     result.size = size
     result.width = size * 2.5
-    result.height = size*2
+    result.height = size
     return result
   }
