@@ -47,34 +47,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const graph = new Graph()
     const toolbar = new ToolBar(graph)
 
-
-    //const n1 = createCircleNode(10, 10, 20, 'goldenrod')
-    //const n2 = createCircleNode(30, 30, 20, 'blue')
-    //const n3 = createRectangleNode(50, 30, 50, 10)
-    //const n4 = createRectangleNode(200,100, 50, 10);
     const n5 = createNoteNode(50, 150, 45, 10)
-
 
     toolbar.addNode(createClassNode)
     toolbar.addNode(createNoteNode)
     toolbar.addNode(createPackageNode)
     toolbar.addNode(createInterfaceNode)
     toolbar.addEdge(createLineEdge)
-   // const n6 = createFullNode(200, 200, 50, 10)
 
-  
-
-    //const n6 = createFullNode(200, 200, 50, 10)
-
-    
-    //toolbar.addNode(createNoteNode,graph)
-
-    //graph.add(n1)
-    //graph.add(n2)
-    //graph.add(n3)
-    //graph.add(n4)
     graph.add(n5)
-    //graph.add(n6)
+
     const e = createLineEdge()
     
     graph.connect(e, { x: 60, y: 40 }, { x: 220, y: 120 })

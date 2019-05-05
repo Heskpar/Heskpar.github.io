@@ -23,7 +23,8 @@ function updateGraphListener(button,buttons,graph)
     }
 
     if(button.type === 'grabber')
-    {	let selected = undefined
+    {	
+        let selected = undefined
 	panel.addEventListener('mousedown', event => {
 	    let mousePoint = mouseLocation(event)
 	    selected = graph.findNode(mousePoint)

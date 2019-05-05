@@ -7,7 +7,7 @@ const  PackagePrototype ={
     },
     contains: function(p){
 	return (this.x <= p.x && p.x <= this.x+this.bottomWidth) &&
-	    (this.y <= p.y && p.y <= this.y + this.bottomHeight+ this.topHeight)
+	    (this.y <= p.y && p.y <= this.y + this.bottomHeight + this.topHeight)
     },
     translate: function(dx, dy){
 	this.x += dx
