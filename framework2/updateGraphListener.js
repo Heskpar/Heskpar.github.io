@@ -15,6 +15,7 @@ function updateGraphListener(button,buttons,graph)
 	// graph.add(e)
 	graph.draw()
 	if (selected !== undefined) {
+            selected.propSheet()
 	    selected.draw()
 	    const bounds = selected.getBounds()
 	    drawGrabber(bounds.x, bounds.y)
@@ -48,7 +49,6 @@ function updateGraphListener(button,buttons,graph)
 		    dragStartBounds.y - bounds.y 
 			+ mousePoint.y - dragStartPoint.y);
 		repaint(selected)
-		
 	    }
 	})
 	

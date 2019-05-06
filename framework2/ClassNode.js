@@ -24,28 +24,64 @@ const ClassNodePrototype = {
         const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
         ctx.beginPath()
         ctx.rect(this.x, this.y, this.size*2, this.size, Math.PI*2, true)
-        ctx.rect(this.x, this.y + this.size, this.size * 2, this.size / 2, Math.PI*2, true)
-        ctx.rect(this.x, this.y + (this.size * 1.5), this.size * 2, this.size / 2, Math.PI*2, true)
+        if(this.attribute !== ""){
+          ctx.rect(this.x, this.y + this.size, this.size * 2, this.size / 2, Math.PI*2, true)
+        }
+        if(this.method !== ""){
+          ctx.rect(this.x, this.y + (this.size * 1.5), this.size * 2, this.size / 2, Math.PI*2, true)
+        }
+
         ctx.fillStyle = "white"
         ctx.fillRect(this.x + 1, this.y + 1, (this.size * 2) - 1, this.size - 1, Math.PI*2, true)
-        ctx.fillRect(this.x + 1, (this.y + this.size) + 1, (this.size * 2) - 1, (this.size / 2) - 1, Math.PI*2, true)
-        ctx.fillRect(this.x + 1, (this.y + this.size * 1.5) + 1, (this.size * 2) - 1, (this.size / 2) - 1, Math.PI*2, true)
+        if(this.attribute !== ""){
+          ctx.fillRect(this.x + 1, (this.y + this.size) + 1, (this.size * 2) - 1, (this.size / 2) - 1,  Math.PI*2, true)
+        }
+        if(this.method !== ""){
+          ctx.fillRect(this.x + 1, (this.y + this.size * 1.5) + 1, (this.size * 2) - 1, (this.size / 2) - 1, Math.PI*2, true)
+        }
+
         ctx.font = '24px serif'
         ctx.fillStyle = 'black'
         ctx.fillText(this.classname, this.x + this.size / 3, this.y + this.size / 1.5)
         ctx.font = '12px serif'
-        ctx.fillText(this.attribute, this.x + this.size / 2, this.y + (this.size * 1.3))
-        ctx.fillText(this.method, this.x + this.size / 2, this.y + (this.size * 1.8))
+        if(this.attribute !== ""){
+          ctx.fillText(this.attribute, this.x + this.size / 2, this.y + (this.size * 1.3))
+        }
+        if(this.method !== ""){
+          ctx.fillText(this.method, this.x + this.size / 2, this.y + (this.size * 1.8))
+        }
         ctx.stroke()
+    },
+    propSheet: function(){
+      document.getElementById("text1").style.visibility = "visible";
+      document.getElementById("label1").style.visibility = "visible";
+      document.getElementById("text2").style.visibility = "visible";
+      document.getElementById("label2").style.visibility = "visible";
+      document.getElementById("text3").style.visibility = "visible";
+      document.getElementById("label3").style.visibility = "visible";
 
+
+      if(document.getElementById("text1").value !== ""){
+        this.classname = document.getElementById("text1").value;
+        document.getElementById("text1").value = "";
+      }
+      if(document.getElementById("text2").value !== ""){
+        this.attribute = document.getElementById("text2").value;
+        document.getElementById("text2").value = "";
+      }
+
+      if(document.getElementById("text3").value !== ""){
+        this.method = document.getElementById("text3").value;
+        document.getElementById("text3").value = "";
+      }
     }
 }
 function createClassNode (x, y, size) {
  
     const result = Object.create(ClassNodePrototype)
-    result.classname = "Classs"
-    result.attribute = "attribute"
-    result.method = "methodd"
+    result.classname = "Class"
+    result.attribute = ""
+    result.method = ""
     result.x = x
     result.y = y
     result.size = size

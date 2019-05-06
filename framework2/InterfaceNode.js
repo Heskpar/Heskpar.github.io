@@ -28,7 +28,6 @@ const InterfaceNodePrototype = {
         ctx.fillStyle = "white"
         ctx.fillRect(this.x + 1, this.y + 1, (this.width) - 1, this.size - 1, Math.PI*2, true)
         ctx.fillRect(this.x + 1, (this.y + this.size) + 1, (this.width) - 1, (this.size) - 1, Math.PI*2, true)
-        
         ctx.font = '14px serif'
         ctx.fillStyle = 'black'
         ctx.fillText(this.name, this.x + this.size / 6, this.y + this.size / 1.7)
@@ -37,7 +36,28 @@ const InterfaceNodePrototype = {
         
         ctx.stroke()
 
+    },
+
+    propSheet: function() {
+      document.getElementById("text1").style.visibility = "visible";
+      document.getElementById("label1").style.visibility = "visible";
+
+      document.getElementById("text2").style.visibility = "visible";
+      document.getElementById("label2").style.visibility = "visible";
+
+      document.getElementById("text3").style.visibility = "hidden";
+      document.getElementById("label3").style.visibility = "hidden";
+
+      if(document.getElementById("text1").value !== ""){
+        this.name = document.getElementById("text1").value;
+        document.getElementById("text1").value = "";
+      }
+      if(document.getElementById("text2").value !== ""){
+        this.methods = document.getElementById("text2").value;
+        document.getElementById("text2").value = "";
+      }
     }
+
 }
 function createInterfaceNode (x, y, size) {
 
