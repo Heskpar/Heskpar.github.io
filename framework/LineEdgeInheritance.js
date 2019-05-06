@@ -52,7 +52,7 @@ const LineEdgeInheritancePrototype = {
 }
 
 
-function createLineEdgeInheritance(startNode,endNode)
+function createInheritanceEdge(startNode,endNode)
 {
     var result = Object.create(LineEdgeInheritancePrototype)
     result.startNode = startNode
