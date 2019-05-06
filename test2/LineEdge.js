@@ -22,7 +22,7 @@ function createLineEdge() {
     },
 
     connectTwoNode: () => {
-      var canvas = document.getElementById("toolbar");
+      var canvas = document.getElementById("graphpanel");
       var ctx = canvas.getContext("2d");
       var flag = false;
       var tc = document.createElement("canvas");
