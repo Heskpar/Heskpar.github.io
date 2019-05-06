@@ -5,12 +5,14 @@ function updateGraphListener(button,buttons,graph)
     
   
 
-    var panel = document.getElementById('graphpanel')
+    let panel = document.getElementById('graphpanel')
 
     function repaint(selected) {
 	const ctx = panel.getContext('2d')
 	ctx.clearRect(0, 0, panel.width, panel.height)
 	panel.innerHTML = ''
+	const e = createLineEdge
+	// graph.add(e)
 	graph.draw()
 	if (selected !== undefined) {
 	    selected.draw()
@@ -23,6 +25,40 @@ function updateGraphListener(button,buttons,graph)
     }
 
     if(button.type === 'grabber')
+    {	
+	panel.addEventListener('mousedown', event => {
+	    let mousePoint = mouseLocation(event)
+	    selected = graph.findNode(mousePoint)
+	    if (selected !== undefined) {
+		dragStartPoint = mousePoint
+		dragStartBounds = selected.getBounds(mousePoint)
+	    }
+	    repaint(selected)
+	})
+	
+        panel.addEventListener('mousemove', event => {
+	    if (dragStartPoint === undefined) return
+	    let mousePoint = mouseLocation(event)
+	    if (selected !== undefined) {
+		const bounds = selected.getBounds();
+		
+		selected.translate(
+		    dragStartBounds.x - bounds.x 
+			+ mousePoint.x - dragStartPoint.x,
+		    dragStartBounds.y - bounds.y 
+			+ mousePoint.y - dragStartPoint.y);
+		repaint(selected)
+		
+	    }
+	})
+	
+	panel.addEventListener('mouseup', event => {
+	    dragStartPoint = undefined
+	    dragStartBounds = undefined
+	})
+	}
+	
+	else if(button.type === 'edge')
     {	
 	panel.addEventListener('mousedown', event => {
 	    let mousePoint = mouseLocation(event)
@@ -80,8 +116,6 @@ function updateGraphListener(button,buttons,graph)
     }
     
 }
-
-
 
 
 function mouseLocation(event) {

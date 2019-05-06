@@ -1,19 +1,76 @@
 'use strict'
+function createLineDependency() {
+  let styleOfLine = undefined
+  let startPoint = undefined
+  let endPoint = undefined 
+  let start = undefined
+  let end = undefined
+  return {
+    connect: (s, e) => {
+      start = s
+      end = e
+    },
 
-function createLineEdgeDependecy() {
-    return {
-        draw: () => {
-                 const canvas = document.getElementById('graphpanel');
-            const ctx = canvas.getContext('2d');
-            // Solid line
-            ctx.beginPath();
-            ctx.setLineDash([5,15]);
-            ctx.moveTo(0, 100);
-            ctx.lineTo(500, 300);
-            ctx.stroke();
-        }
-      }
+    getType:() => {
+      return 'edge'
+    },
+
+    setLineStyle:(l) => {
+      styleOfLine = l
+    },
+
+    getLineStyle:() =>{
+        return lineStyle
+    },
+    
+    drawButton: function(canvas){
+        const ctx = canvas.getContext('2d')
+        ctx.beginPath()
+        ctx.moveTo(5,25)
+        ctx.lineTo(25,5)
+        ctx.stroke()
+        },
+
+    draw: () => {
+      const canvas = document.getElementById('graphpanel')
+      const ctx = canvas.getContext('2d')
+      ctx.beginPath()
+      const startBounds = start.getBounds() 
+      const endBounds = end.getBounds() 
+      // const p = center(startBounds) // Just pick the center of the bounds for now
+      // const q = center(endBounds) // Not the "connection points" that graphed2 uses
+      startPoint = s.getConnectionPoint(startBounds)
+      endPoint = e.getConnectionPont(endBounds)
+      startPoint = s.getConnectionPoint(endPoint)
+      endPoint = e.getConnectionPoint(startPoint)
+      if(lineStyle === 1){ctx.setLineDash([5,15])}
+      ctx.moveTo(p.x, p.y)
+      ctx.lineTo(q.x, q.y)
+      ctx.stroke()
+    },
+
+    drawDragged: (s,e) => {
+        const canvas = document.getElementById('graphpanel')
+        const ctx = canvas.getContext('2d')
+        ctx.beginPath()
+        startPoint = center(start.getBounds())
+        const startBounds = start.getBounds() 
+        const endBounds = end.getBounds() 
+        // const p = center(startBounds) // Just pick the center of the bounds for now
+        // const q = center(endBounds) // Not the "connection points" that graphed2 uses
+        // startPoint = s.getConnectionPoint(startBounds)
+        // endPoint = e.getConnectionPont(endBounds)
+        // startPoint = s.getConnectionPoint(endPoint)
+        // endPoint = e.getConnectionPoint(startPoint)
+        if(lineStyle === 1){ctx.setLineDash([5,15])}
+        ctx.moveTo(p.x, p.y)
+        ctx.lineTo(q.x, q.y)
+        ctx.stroke()
+      },
+
+  }
 }
+
 //   let start = undefined
 //   let end = undefined
 //   return {

@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
     graph.add(n5)
     //graph.add(n6)
     const e = createLineEdge()
-    
+    // graph.adde(e)
     graph.connect(e, { x: 60, y: 40 }, { x: 220, y: 120 })
     graph.draw()
     
