@@ -51,8 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
     toolbar.addNode(createNoteNode)
     toolbar.addNode(createPackageNode)
     toolbar.addNode(createInterfaceNode)
-    toolbar.addEdge(createLineEdge)
 
+    toolbar.addEdge(createLineEdge)
+    toolbar.addEdge(createDependencyEdge)
+    toolbar.addEdge(createAssociationEdge)
+    toolbar.addEdge(createInheritanceEdge)
+    toolbar.addEdge(createInterfaceEdge)
+    toolbar.addEdge(createAggregationEdge)
+    toolbar.addEdge(createCompositionEdge)
     graph.add(n5)
 
     const e = createLineEdge()
