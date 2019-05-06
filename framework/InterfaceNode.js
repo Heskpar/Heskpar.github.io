@@ -110,7 +110,7 @@ const InterfaceNodePrototype = {
     }
   },
 
- /**
+  /**
    * Sets all necessary HTML elements for property editing to visible.
    * Based on entry from user into the applicable fields for this node,
    * changes necessary properties.
