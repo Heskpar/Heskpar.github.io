@@ -76,6 +76,8 @@ class Graph {
     const e = createLineEdge()
     graph.connect(e, { x: 60, y: 40 }, { x: 220, y: 120 })
     graph.draw()
+    e.connectTwoNode();
+
     
     const panel = document.getElementById('graphpanel')
     let selected = undefined
