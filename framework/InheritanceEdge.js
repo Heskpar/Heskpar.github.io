@@ -3,8 +3,8 @@
 const InheritanceEdgePrototype = {
     
     draw: function() {
-	var startPoint = this.startNode.getConnectionPoint(this.endNode.center())
-	var endPoint = this.endNode.getConnectionPoint(startPoint)
+	let startPoint = this.startNode.getConnectionPoint(this.endNode.center())
+	let endPoint = this.endNode.getConnectionPoint(startPoint)
 	const canvas = document.getElementById('graphpanel')
 	const ctx = canvas.getContext('2d')
 	
