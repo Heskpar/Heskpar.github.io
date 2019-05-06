@@ -1,6 +1,5 @@
 'use strict'
 
-
 function center(rect) {
     return { x: rect.x + rect.width / 2, y: rect.y + rect.height / 2 }
 }
@@ -22,7 +21,6 @@ class Graph {
     }
 
     connect(e, p1, p2) {
-	
 	const n1 = this.findNode(p1)
 	const n2 = this.findNode(p2)
 	if (n1 !== undefined && n2 !== undefined) {
@@ -53,12 +51,17 @@ document.addEventListener('DOMContentLoaded', function () {
     toolbar.addNode(createNoteNode)
     toolbar.addNode(createPackageNode)
     toolbar.addNode(createInterfaceNode)
-    toolbar.addEdge(createLineEdge)
 
+    toolbar.addEdge(createLineEdge)
+    toolbar.addEdge(createDependencyEdge)
+    toolbar.addEdge(createAssociationEdge)
+    toolbar.addEdge(createInheritanceEdge)
+    toolbar.addEdge(createInterfaceEdge)
+    toolbar.addEdge(createAggregationEdge)
+    toolbar.addEdge(createCompositionEdge)
     graph.add(n5)
 
     const e = createLineEdge()
-    
     graph.connect(e, { x: 60, y: 40 }, { x: 220, y: 120 })
     graph.draw()
     
@@ -75,9 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //graph.add(e3)
     graph.draw()
 
-
     const panel = document.getElementById('graphpanel')
     toolbar.tools[0].Switch()
-    
-    
+        
 })

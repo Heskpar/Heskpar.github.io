@@ -31,10 +31,10 @@ const ClassNodePrototype = {
         ctx.fillRect(this.x + 1, (this.y + this.size * 1.5) + 1, (this.size * 2) - 1, (this.size / 2) - 1, Math.PI*2, true)
         ctx.font = '24px serif'
         ctx.fillStyle = 'black'
-        ctx.fillText("Class", this.x + this.size / 2, this.y + this.size / 1.5)
+        ctx.fillText(this.classname, this.x + this.size / 2, this.y + this.size / 1.5)
         ctx.font = '12px serif'
-        ctx.fillText("attribute", this.x + this.size / 2, this.y + (this.size * 1.3))
-        ctx.fillText("method", this.x + this.size / 2, this.y + (this.size * 1.8))
+        ctx.fillText(this.attribute, this.x + this.size / 2, this.y + (this.size * 1.3))
+        ctx.fillText(this.method, this.x + this.size / 2, this.y + (this.size * 1.8))
         ctx.stroke()
 
     }
@@ -42,6 +42,9 @@ const ClassNodePrototype = {
 function createClassNode (x, y, size) {
  
     const result = Object.create(ClassNodePrototype)
+    result.classname = "Classss"
+    result.attribute = "attribute"
+    result.method = "method"
     result.x = x
     result.y = y
     result.width = size*2
