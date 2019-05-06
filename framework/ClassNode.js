@@ -1,6 +1,6 @@
 'use strict'
 const ClassNodePrototype = {
-     getBounds: function(){
+    getBounds: function(){
 	return{x: this.x,y:this.y,width:this.width,height:this.height}
     },
    contains: function(p){
@@ -44,7 +44,7 @@ const ClassNodePrototype = {
         var dx = point.x - centerX
         var dy = point.y - centerY
         if(dx<-dy && dx >= dy) return {x: centerX, y: this.y}
-        else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width, y: centerY}
+        else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width, y: this.centerY}
         // else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width}
         else if(dx < -dy && dx <dy) return {x:this.x,y: centerY}
         else if(dx >= -dy && dx<dy)return{x: centerX, y:this.y+this.height}
@@ -62,7 +62,7 @@ function createClassNode (x, y, size) {
     result.x = x
     result.y = y
     result.size = size
-    result.width = size*2
+    result.width = size*2 
     result.height = size*2
     return result
   }
