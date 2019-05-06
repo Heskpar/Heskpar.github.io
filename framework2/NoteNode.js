@@ -12,6 +12,7 @@ const  NoteNodePrototype ={
 	this.y += dy
     },
     drawButton: function(canvas){
+        
 	const ctx = canvas.getContext('2d')
 	ctx.beginPath()
 	ctx.rect(5 , 10 , 30, 15, Math.PI*2, true)
@@ -37,8 +38,12 @@ const  NoteNodePrototype ={
       document.getElementById("text1").style.visibility = "visible";
       document.getElementById("label1").style.visibility = "visible";
 
+      document.getElementById("colorpicker").style.visibility = "visible";
+      document.getElementById("label4").style.visibility = "visible";
+
       document.getElementById("text2").style.visibility = "hidden";
       document.getElementById("label2").style.visibility = "hidden";
+      document.getElementById("label5").style.visibility = "hidden";
 
       document.getElementById("text3").style.visibility = "hidden";
       document.getElementById("label3").style.visibility = "hidden";
@@ -48,6 +53,11 @@ const  NoteNodePrototype ={
         this.title = document.getElementById("text1").value;
         document.getElementById("text1").value = "";
       }
+
+      if (document.getElementById("colorpicker").value !== "null"){
+        this.color = document.getElementById("colorpicker").value;
+        document.getElementById("colorpicker").value = "null"
+      } 
 
     }
 }

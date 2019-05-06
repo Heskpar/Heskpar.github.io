@@ -26,9 +26,11 @@ const ClassNodePrototype = {
         ctx.rect(this.x, this.y, this.size*2, this.size, Math.PI*2, true)
         if(this.attribute !== ""){
           ctx.rect(this.x, this.y + this.size, this.size * 2, this.size / 2, Math.PI*2, true)
+          this.height = this.size * 1.5
         }
         if(this.method !== ""){
           ctx.rect(this.x, this.y + (this.size * 1.5), this.size * 2, this.size / 2, Math.PI*2, true)
+          this.height = this.size * 2
         }
 
         ctx.fillStyle = "white"
@@ -60,6 +62,10 @@ const ClassNodePrototype = {
       document.getElementById("text3").style.visibility = "visible";
       document.getElementById("label3").style.visibility = "visible";
 
+      document.getElementById("colorpicker").style.visibility = "hidden";
+      document.getElementById("label4").style.visibility = "hidden";
+      document.getElementById("label5").style.visibility = "hidden";
+
 
       if(document.getElementById("text1").value !== ""){
         this.classname = document.getElementById("text1").value;
@@ -86,6 +92,6 @@ function createClassNode (x, y, size) {
     result.y = y
     result.size = size
     result.width = size*2
-    result.height = size*2
+    result.height = size
     return result
   }
