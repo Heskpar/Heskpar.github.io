@@ -37,8 +37,24 @@ const ClassNodePrototype = {
         ctx.fillText("attribute", this.x + this.size / 2, this.y + (this.size * 1.3))
         ctx.fillText("method", this.x + this.size / 2, this.y + (this.size * 1.8))
         ctx.stroke()
-
-    }
+    },
+    getConnectionPoint: function(point){
+        var centerX = this.x + this.width/2
+        var centerY = this.y + this.height/2
+        var dx = point.x - centerX
+        var dy = point.y - centerY
+        if(dx<-dy && dx >= dy) return {x: centerX, y: this.y}
+        else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width, y: centerY}
+        // else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width}
+        else if(dx < -dy && dx <dy) return {x:this.x,y: centerY}
+        else if(dx >= -dy && dx<dy)return{x: centerX, y:this.y+this.height}
+        },
+        center:function()  {
+        return{
+            x: this.x+this.width/2 ,
+            y: this.y+this.height/2
+        }
+        }
 }
 function createClassNode (x, y, size) {
  

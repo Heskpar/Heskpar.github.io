@@ -43,9 +43,10 @@ const InterfaceNodePrototype = {
         var centerY = this.y + this.height/2
         var dx = point.x - centerX
         var dy = point.y - centerY
-        if(dx<-dy && dx >= dy) return {x: this.centerX, y: this.y}
-        else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width, y:this.centerY}
-        else if(dx < -dy && dx <dy) return {x:this.x,y: this.centerY}
+        if(dx<-dy && dx >= dy) return {x: centerX, y: this.y}
+        else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width, y: centerY}
+        // else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width}
+        else if(dx < -dy && dx <dy) return {x:this.x,y: centerY}
         else if(dx >= -dy && dx<dy)return{x: centerX, y:this.y+this.height}
         },
         center:function()  {
