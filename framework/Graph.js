@@ -94,9 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
     graph.draw()
 
 
-
-
-
     const panel = document.getElementById('graphpanel')
     toolbar.tools[0].Switch()
     

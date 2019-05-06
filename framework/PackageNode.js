@@ -21,7 +21,8 @@ const  PackagePrototype ={
 	ctx.stroke()
 
 	
-    },
+	},
+
     draw: function(){
 	const canvas = document.getElementById('graphpanel')
 	const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
@@ -35,8 +36,25 @@ const  PackagePrototype ={
 	ctx.fillStyle = 'black'
 	ctx.fillText(this.content, this.x + (this.bottomWidth / 7), this.y + this.bottomHeight/1.3)
 	ctx.stroke()
-    }
+	},
+	getConnectionPoint: function(point){
+		var centerX = this.x + this.width/2
+		var centerY = this.y + this.height/2
+		var dx = point.x - centerX
+		var dy = point.y - centerY
+		if(dx<-dy && dx >= dy) return {x: centerX, y: this.y}
+		else if(dx >= -dy && dx >= dy) return  {x: this.x + this.width, y: centerY}
+		else if(dx < -dy && dx <dy) return {x:this.x,y: centerY}
+		else if(dx >= -dy && dx<dy)return{x: centerX, y:this.y+this.height}
+		},
+		center:function()  {
+		return{
+			x: this.x+this.width/2 ,
+			y: this.y+this.height/2
+		}
+		}
 }
+
 function createPackageNode(x, y, size) {
     const result = Object.create(PackagePrototype)
     result.content= 'Package'
