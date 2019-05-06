@@ -1,6 +1,9 @@
 
 'use strict'
-
+/**
+* This class creates a clickable canvas which manages its active status with
+* other buttons
+*/
 class Button {
   constructor(createNode,k,type,graph,buttons){
     this.graph = graph
@@ -28,7 +31,13 @@ class Button {
     this.tempNode.drawButton(this.canvas)
 
   }
-
+/**
+* This function switches the button on or off and updates the graph listeners
+* to the appropriate functionality of the currently active button
+* @param {event} event - honestly I have no idea why I'm passing this here,
+* it was added as part of a solution to a long held problem, and I refuse to make edits
+* even though im pretty sure it's not necessary to pass the event.. Thanks professor Horstmann 
+*/
   Switch(event){
     var old_element = document.getElementById('graphpanel')
     var new_element = old_element.cloneNode(true)
@@ -60,7 +69,7 @@ class Button {
       ctx.fill()
       this.tempNode.drawButton(this.canvas)
 
-      updateGraphListener(this,this.buttons,this.graph)	    
+      updateGraphListener(this,this.graph)	    
     }
     this.graph.draw()
   }
