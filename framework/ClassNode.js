@@ -1,19 +1,43 @@
 'use strict'
 const ClassNodePrototype = {
+
+  /** getBounds
+   * Returns the bounds of the object, including height and width
+   * @returns {number} x - x-axis coord
+   * @returns {number} y - y-axis coord
+   * @returns {number} width - size of width
+   * @returns {number} height - size of height
+   */
   getBounds: function(){
     return{x: this.x,y:this.y,width:this.width,height:this.height}
   },
 
+  /** contains
+   * Takes a point and determines whether the point is within the bounds of the node.
+   * @param {point} p - point on canvas to be determined
+   * @returns {boolean} - whether the node contains the point
+   */
   contains: function(p){
     return (this.x <= p.x && p.x <= this.x+this.width) &&
       (this.y <= p.y && p.y <= this.y + this.height)
   },
 
+  /** translate
+   * Updates the x and y coordinates of the node based on dx and dy.
+   * @param {number} dx - amount to change this.x by
+   * @param {number} dy - amount to change this.y by
+   */
   translate: function(dx, dy){
     this.x += dx
     this.y += dy
   },
   
+  /** drawbutton
+   *This function takes a canvas, and draws a small representation
+   *of what the tool does.
+   *@param {canvas} canvas - this argument is expected to be a small, 
+   *42 by 42 px sized canvas that will serve as a button. 
+   */
   drawButton: function(canvas){
     const ctx = canvas.getContext('2d')
     ctx.beginPath()
@@ -23,6 +47,10 @@ const ClassNodePrototype = {
     ctx.stroke()
   },
 
+  /**
+   * Draws the canvas node element onto the main area (graphpanel), based on x and y for position.
+   * Also draws or omits certain parts of the node based on property values.
+   */
   draw: function() {
     const canvas = document.getElementById('graphpanel')
     const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
@@ -59,6 +87,13 @@ const ClassNodePrototype = {
     ctx.stroke()
   },
 
+  /**
+   * Based on the position of the other connection point (point),
+   * calculates second point on node for edge to connect to.
+   * @param {point} point - connection point on another node, start of an edge.
+   * @returns {number} x - x coordinate for second point.
+   * @returns {number} y - y coordinate for second point.
+   */
   getConnectionPoint: function(point){
     var centerX = this.x + this.width/2
     var centerY = this.y + this.height/2
@@ -71,6 +106,11 @@ const ClassNodePrototype = {
     else if(dx >= -dy && dx<dy)return{x: centerX, y:this.y + this.height}
   },
 
+  /**
+   * Returns the center of the node based on x, y, width, and height.
+   * @returns {number} x - x-axis coordinate of center.
+   * @returns {number} y - y-axis coordinate of center.
+   */
   center:function()  {
     return{
       x: this.x+this.width/2 ,
@@ -78,6 +118,11 @@ const ClassNodePrototype = {
     }
   },
 
+  /**
+   * Sets all necessary HTML elements for property editing to visible.
+   * Based on entry from user into the applicable fields for this node,
+   * changes necessary properties.
+   */
   propSheet: function(){
     document.getElementById("text1").style.visibility = "visible";
     document.getElementById("label1").style.visibility = "visible";
@@ -107,6 +152,13 @@ const ClassNodePrototype = {
   }
 }
 
+/**
+ * Returns an instance of a standard class node, with the position and size as specified by the parameters.
+ * @param {number} x - x-axis coordinate of new node
+ * @param {number} y - y-axis coordinate of new node
+ * @param {number} size - size of node, used for calculating width and height
+ * @returns {Object} result - the newly created ClassNode
+ */
 function createClassNode (x, y, size) {
   const result = Object.create(ClassNodePrototype)
   result.classname = "Class"

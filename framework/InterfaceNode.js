@@ -22,6 +22,12 @@ const InterfaceNodePrototype = {
     ctx.stroke()
   },
 
+  /**
+   * draw 
+   * This function draws the object node based on the set height and width
+   * @const {canvs} canvas the grid that the node will be drawn on 
+   * @const {ctx} ctx the object that is drawn or modified on the grid
+   */
   draw: function() {
     const canvas = document.getElementById('graphpanel')
     const ctx = canvas.getContext('2d') // No need for "if (canvas.getContext)"
