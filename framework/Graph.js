@@ -22,6 +22,7 @@ class Graph {
     }
 
     connect(e, p1, p2) {
+	
 	const n1 = this.findNode(p1)
 	const n2 = this.findNode(p2)
 	if (n1 !== undefined && n2 !== undefined) {
@@ -58,17 +59,12 @@ document.addEventListener('DOMContentLoaded', function () {
     toolbar.addNode(createNoteNode)
     toolbar.addNode(createPackageNode)
     toolbar.addNode(createInterfaceNode)
-
+    toolbar.addEdge(createLineEdge)
    // const n6 = createFullNode(200, 200, 50, 10)
 
-    toolbar.addNode(createRectangleNode)
-    toolbar.addNode(createNoteNode)
-    toolbar.addNode(createFullNode)
-    toolbar.addNode(createRectangleNode,graph)
-    toolbar.addNode(createNoteNode,graph)
-    toolbar.addNode(createFullNode,graph)
+  
 
-    const n6 = createFullNode(200, 200, 50, 10)
+    //const n6 = createFullNode(200, 200, 50, 10)
 
     
     //toolbar.addNode(createNoteNode,graph)

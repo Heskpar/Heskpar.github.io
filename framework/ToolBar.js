@@ -12,14 +12,17 @@ class ToolBar {
     }
 
     addNode(createNode) {
-	
-
-
 
 	const button = new Button(createNode,this.i,'node',this.graph,this.tools)
 	this.tools.push(button)
 	button.canvas.addEventListener('click', event =>button.Switch(event))
 	this.i++
+    }
+    addEdge(createEdge) {
+	const button = new Button(createEdge,this.i,'edge',this.graph,this.tools)
+	this.tools.push(button)
+	button.canvas.addEventListener('click', event =>button.Switch(event))
+	this.i++	
     }
   
 }
